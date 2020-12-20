@@ -1,0 +1,51 @@
+{
+	"variables": [],
+	"info": {
+		"name": "prime",
+		"_postman_id": "1a58ad45-86aa-d965-d4c1-2c0c3dbb91da",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/primes/11",
+			"request": {
+				"url": "http://localhost:8080/primes/11",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"description": "",
+						"warning": "",
+						"disabled": true
+					},
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"description": "",
+						"warning": "",
+						"disabled": true
+					},
+					{
+						"key": "type",
+						"value": "apache",
+						"description": "",
+						"warning": "",
+						"disabled": true
+					},
+					{
+						"key": "type",
+						"value": "invalid",
+						"description": "",
+						"warning": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
