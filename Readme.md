@@ -16,7 +16,7 @@ Alternatively:
 2. java -jar target/prime-service-api-0.0.1-SNAPSHOT.jar
 
 How to get primes:
-The url to his the rest endpoint is GET http://localhost:8080/primes/{limit} where limit is any integer.
+The url to his the rest endpoint is GET http://localhost:8080/primes/{limit} where limit is any integer between 2 and 1000000.
 e.g. http://localhost:8080/primes/11 will return 
 {
     "initial": 11,
