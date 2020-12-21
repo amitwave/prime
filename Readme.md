@@ -15,6 +15,9 @@
 1. Open command line and Go to prime-service-api cd prime-service-api/
 2. java -jar target/prime-service-api-0.0.1-SNAPSHOT.jar
 
+### Swagger
+http://localhost:8080/swagger-ui/index.html
+
 ### How to get primes:
 The url to his the rest endpoint is GET http://localhost:8080/primes/{limit} where limit is any integer between 2 and 1000000.
 e.g. http://localhost:8080/primes/11 will return 
@@ -44,9 +47,9 @@ In this project there are two services which provide the list of primes.
 2. prime-service-apache - This uses apache library to determine is a number is prime.
 
 ### To use one of the above add header parameter as below:
-1. type=apache to use prime-service-apache
-2. type=default to use prime-service-default to explicitly specify to use prime-service-default.
-####If the "type" parameter is missing in the header then the default service, prime-service-default is used.
+1. serviceType=apache to use prime-service-apache
+2. serviceType=default to use prime-service-default to explicitly specify to use prime-service-default.
+####If the "serviceType" parameter is missing in the header then the default service, prime-service-default is used.
 
 ### Extension possibilities:
 If there is a need to provide another service then simply add another module inline with prime-service-default.

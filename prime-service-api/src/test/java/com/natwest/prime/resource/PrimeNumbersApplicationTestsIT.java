@@ -37,7 +37,7 @@ class PrimeNumbersApplicationTestsIT {
 	@MethodSource
 	public void shouldReturnPrimeNumbersForJsonAndXmlMediaType(HttpStatus httpStatus, MediaType mediaType, String type, Long number, Long expectedInitial, List<Long> primes) throws Exception {
 		headers.setAccept(Arrays.asList(mediaType));
-		headers.set("type", type);
+		headers.set("serviceType", type);
 
 		HttpEntity<PrimeNumberResponse> entity = new HttpEntity<>(null, headers);
 
