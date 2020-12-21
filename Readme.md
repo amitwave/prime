@@ -30,7 +30,7 @@ e.g. http://localhost:8080/primes/11 will return
 }
 
 ### Postman collection: 
-** prime.postman_collection.json **
+**Please refer to file: prime.postman_collection.json **
 
 ### Content negotiation:
 Default response type is application/json
@@ -46,7 +46,7 @@ In this project there are two services which provide the list of primes.
 ### To use one of the above add header parameter as below:
 1. type=apache to use prime-service-apache
 2. type=default to use prime-service-default to explicitly specify to use prime-service-default.
-If the type parameter is missing in the header then the default service, prime-service-default is used.
+####If the "type" parameter is missing in the header then the default service, prime-service-default is used.
 
 ### Extension possibilities:
 If there is a need to provide another service then simply add another module inline with prime-service-default.

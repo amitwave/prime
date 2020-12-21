@@ -24,21 +24,20 @@ public class PrimeNumberResource {
     private List<PrimeService> primeServices;
 
     @GetMapping(value = "/{number}",
-            produces={MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PrimeNumberResponse> getPrimesResponse(@PathVariable("number") @Min(2) @Max(1000000) Long number, @RequestHeader(value = "type", defaultValue = "default") String type) {
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<PrimeNumberResponse> getPrimes(@PathVariable("number") @Min(2) @Max(1000000) Long number, @RequestHeader(value = "type", defaultValue = "default") String type) {
 
         return ResponseEntity.ok(new PrimeNumberResponse(number, getService(type).getPrimes(number)));
-        }
+    }
 
 
     private PrimeService getService(String type) {
 
-            Optional<PrimeService> primeServiceStream = primeServices.stream()
-                    .filter(ps -> ps.getServiceType().equalsIgnoreCase(type))
-                    .findFirst();
+        Optional<PrimeService> primeServiceStream = primeServices.stream()
+                .filter(primeService -> primeService.getServiceType().equalsIgnoreCase(type))
+                .findFirst();
 
         return primeServiceStream.orElseThrow(() -> new InvalidRequestException("Bad request - header parameter type is invalid"));
-
 
 
     }

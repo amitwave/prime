@@ -1,4 +1,4 @@
-package com.natwest.prime;
+package com.natwest.prime.resource;
 
 import com.natwest.prime.resource.PrimeNumberResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,12 +15,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class PrimeNumbersApplicationTests {
+class PrimeNumbersApplicationTestsIT {
 
 	@LocalServerPort
 	private int port;
@@ -47,25 +45,30 @@ class PrimeNumbersApplicationTests {
 				this.restTemplate.exchange("http://localhost:" + port + "/primes/"+ number,
 						HttpMethod.GET, entity, PrimeNumberResponse.class);
 
-		assertThat(primeNumberResponseResponseEntity);
-		assertEquals(mediaType, primeNumberResponseResponseEntity.getHeaders().getContentType());
-		assertEquals(httpStatus.value(), primeNumberResponseResponseEntity.getStatusCodeValue());
+
+		assertEquals("Unexpected Media Type", mediaType, primeNumberResponseResponseEntity.getHeaders().getContentType());
+		assertEquals("Unexpected status", httpStatus.value(), primeNumberResponseResponseEntity.getStatusCodeValue());
 
 		PrimeNumberResponse primeNumberResponse = primeNumberResponseResponseEntity.getBody();
 
-		assertEquals(expectedInitial, primeNumberResponse.getInitial(), "Unexpected initial value");
-		assertEquals(primes.size(), primeNumberResponse.getPrimes().size(), "Unexpected size of returned primes");
-		assertEquals(primes, primeNumberResponse.getPrimes(), "unexpected primes");
+		assertEquals("Unexpected initial value", expectedInitial, primeNumberResponse.getInitial());
+		assertEquals("Unexpected size of returned primes", primes.size(), primeNumberResponse.getPrimes().size() );
+		assertEquals("unexpected primes", primes, primeNumberResponse.getPrimes());
 	}
 
 	private static Stream<Arguments> shouldReturnPrimeNumbersForJsonAndXmlMediaType() {
 		return Stream.of(
 				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_JSON, "default", 10L, 10L, Arrays.asList(2L,3L,5L,7L)),
+				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_XML, "default", 10L, 10L, Arrays.asList(2L,3L,5L,7L)),
+
 				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_JSON, "default", 11L, 11L, Arrays.asList(2L,3L,5L,7L,11L)),
 				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_XML, "default", 11L, 11L, Arrays.asList(2L,3L,5L,7L,11L)),
+
 				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_JSON, "apache", 11L, 11L, Arrays.asList(2L,3L,5L,7L,11L)),
 				Arguments.of(HttpStatus.OK, MediaType.APPLICATION_XML, "apache", 11L, 11L, Arrays.asList(2L,3L,5L,7L,11L)),
+
 				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "invalid", 11L, null, Collections.EMPTY_LIST),
+
 				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "default", 1L, null, Collections.EMPTY_LIST),
 				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "default", 1000001L, null, Collections.EMPTY_LIST)
 		);

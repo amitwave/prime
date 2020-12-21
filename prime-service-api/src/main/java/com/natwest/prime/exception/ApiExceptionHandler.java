@@ -17,10 +17,10 @@ import javax.validation.ConstraintViolationException;
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @Override
+   /* @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return super.handleExceptionInternal(ex, body, headers, status, request);
-    }
+    }*/
 
     @ExceptionHandler({InvalidRequestException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
