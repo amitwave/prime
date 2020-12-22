@@ -13,7 +13,8 @@
 
 #### Alternative way to run:
 1. Open command line and Go to prime-service-api cd prime-service-api/
-2. java -jar target/prime-service-api-0.0.1-SNAPSHOT.jar
+2. run: mvn clean package
+3. java -jar target/prime-service-api-0.0.1-SNAPSHOT.jar
 
 ### Swagger
 http://localhost:8080/swagger-ui/index.html
@@ -51,7 +52,8 @@ In this project there are two services which provide the list of primes.
 1. serviceType=apache to use prime-service-apache
 2. serviceType=default to use prime-service-default to explicitly specify to use prime-service-default.
 3. serviceTpye=bigint to use prime-service-bigint
-####If the "serviceType" parameter is missing in the header then the default service, prime-service-default is used.
+
+#### If the "serviceType" parameter is missing in the header then the default service, prime-service-default is used.
 
 ### Extension possibilities:
 If there is a need to provide another service then simply add another module inline with prime-service-default.
