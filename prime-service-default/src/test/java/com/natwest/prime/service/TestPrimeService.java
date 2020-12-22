@@ -35,38 +35,20 @@ public class TestPrimeService {
 
     @Test
     public void shouldReturnListOfPrimeNumbersForALimit(){
-        when(primeNumberServiceDefault.isPrime(7L)).thenReturn(true);
-        when(primeNumberServiceDefault.isPrime(11L)).thenReturn(true);
+        when(primeNumberServiceDefault.isPrime(2L)).thenReturn(true);
+        when(primeNumberServiceDefault.isPrime(3L)).thenReturn(true);
+        when(primeNumberServiceDefault.isPrime(4L)).thenReturn(false);
 
-        List<Long> primes = primeService.getPrimes(11L);
 
-        assertEquals("Unexpected size of response", 5, primes.size());
-        assertEquals("Unexpected list of primes", Arrays.asList(2L,3L,5L,7L,11L), primes);
+        List<Long> primes = primeService.getPrimes(4L);
 
-        verify(primeNumberServiceDefault, times(1)).isPrime(7L);
-        verify(primeNumberServiceDefault, times(1)).isPrime(11L);
+        assertEquals("Unexpected size of response", 2, primes.size());
+        assertEquals("Unexpected list of primes", Arrays.asList(2L,3L), primes);
+
+        verify(primeNumberServiceDefault, times(1)).isPrime(2L);
+        verify(primeNumberServiceDefault, times(1)).isPrime(3L);
+        verify(primeNumberServiceDefault, times(1)).isPrime(4L);
         verifyNoMoreInteractions(primeNumberServiceDefault);
 
     }
-
-    @ParameterizedTest
-    @MethodSource
-    public void shouldReturnListOfPrimeNumbersWhenNumberIsLessThan7(Long number, List<Long> expected){
-        List<Long> primes = primeService.getPrimes(number);
-
-        assertEquals("Unexpected size of response", expected.size(), primes.size());
-        assertEquals("Unexpected list of primes", expected, primes);
-
-        verifyNoMoreInteractions(primeNumberServiceDefault);
-    }
-
-    private static Stream<Arguments> shouldReturnListOfPrimeNumbersWhenNumberIsLessThan7() {
-        return Stream.of(
-                Arguments.of(6L, Arrays.asList(2L,3L,5L)),
-                Arguments.of(2L, Arrays.asList(2L)),
-                Arguments.of(3L, Arrays.asList(2L,3L)),
-                Arguments.of(5L, Arrays.asList(2L,3L,5L)))
-                ;
-    }
-
 }

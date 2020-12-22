@@ -29,24 +29,9 @@ public class PrimeServiceApacheImpl implements PrimeService{
         if(number <= 1) {
             return primes;
         }
-        if(number >= 2) {
-            primes.add(2L);
-        }
-        if(number >= 3) {
-            primes.add(3L);
-        }
 
-        if(number >= 5) {
-            primes.add(5L);
-        }
-
-        List<Long> primeList = IntStream.rangeClosed(7, Math.toIntExact(number))
+        List<Long> primeList = IntStream.rangeClosed(2, Math.toIntExact(number))
                     .parallel()
-                    .filter(i -> i % 2 != 0)
-                    .filter(i -> String.valueOf(i).chars()
-                            .map(Character::getNumericValue)
-                            .sum() % 3 != 0)
-                    .filter(i -> i % 5 != 0)
                     .filter(primeNumberServiceApache::isPrime)
                     .asLongStream()
                     .boxed()
