@@ -2,20 +2,16 @@ package com.natwest.prime.apache.service;
 
 
 import com.natwest.prime.apache.primenumberservice.PrimeNumberServiceApache;
+import com.natwest.prime.service.exception.NumberNotInRangeException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -56,8 +52,18 @@ public class TestPrimeService {
     }
 
     @Test
-    public void shouldTHrowExceptionWhenNumberIsLargerThanIntegerRange(){
-        assertThrows(RuntimeException.class, () -> primeService.getPrimes(new Long(Integer.MAX_VALUE) +1));
+    public void shouldThrowExceptionWhenNumberIsLargerThanAMillion(){
+        assertThrows(NumberNotInRangeException.class, () -> primeService.getPrimes(1000001L));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenNumberIsLargerThanIntegerRange(){
+        assertThrows(NumberNotInRangeException.class, () -> primeService.getPrimes(new Long(Integer.MAX_VALUE) +1));
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenNumberIsSmallerThan2(){
+        assertThrows(NumberNotInRangeException.class, () -> primeService.getPrimes(1L));
     }
 
 }

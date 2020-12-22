@@ -43,12 +43,14 @@ The content of the response can be changed to xml by adding header as below:
 
 ### Switching between service implementation:
 In this project there are two services which provide the list of primes.
-1. prime-service-default - this is the default service.
-2. prime-service-apache - This uses apache library to determine is a number is prime.
+1. prime-service-default - this is the default service. This implementation supports max limit of 100000
+2. prime-service-apache - This uses apache library to determine is a number is prime. This implementation supports max limit of 500000
+3. prime-service-bigint - This implementation supports max limit of 10000000
 
 ### To use one of the above add header parameter as below:
 1. serviceType=apache to use prime-service-apache
 2. serviceType=default to use prime-service-default to explicitly specify to use prime-service-default.
+3. serviceTpye=bigint to use prime-service-bigint
 ####If the "serviceType" parameter is missing in the header then the default service, prime-service-default is used.
 
 ### Extension possibilities:

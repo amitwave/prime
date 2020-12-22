@@ -1,5 +1,6 @@
 package com.natwest.prime.exception;
 
+import com.natwest.prime.service.exception.NumberNotInRangeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,6 @@ import javax.validation.ConstraintViolationException;
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-   /* @Override
-    protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        return super.handleExceptionInternal(ex, body, headers, status, request);
-    }*/
-
     @ExceptionHandler({InvalidRequestException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> catchInvalidRequestException(InvalidRequestException e, WebRequest request) {
@@ -31,6 +27,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({ConstraintViolationException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> invalidInput(ConstraintViolationException e, WebRequest request) {
+        return processException(e, request, HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
+    @ExceptionHandler({NumberNotInRangeException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> numberNotInRangeException(NumberNotInRangeException e, WebRequest request) {
         return processException(e, request, HttpStatus.BAD_REQUEST, e.getMessage());
     }
 

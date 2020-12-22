@@ -12,10 +12,9 @@ public class PrimeNumberServiceDefaultDefaultImpl implements PrimeNumberServiceD
 
     @Cacheable("primeNumber")
     public Boolean isPrime(Long number) {
-        boolean isPrime = LongStream.rangeClosed(2, (long) (Math.sqrt(number)))
+        return LongStream.rangeClosed(2, (long) (Math.sqrt(number)))
                 .parallel()
                 .noneMatch(i -> number % i == 0);
-        return isPrime;
     }
 
 }

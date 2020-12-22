@@ -1,6 +1,5 @@
 package com.natwest.prime.resource;
 
-import com.natwest.prime.resource.PrimeNumberResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,6 +14,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
+
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -70,7 +70,8 @@ class PrimeNumbersApplicationTestsIT {
 				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "invalid", 11L, null, Collections.EMPTY_LIST),
 
 				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "default", 1L, null, Collections.EMPTY_LIST),
-				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "default", 1000001L, null, Collections.EMPTY_LIST)
+				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "default", 1000001L, null, Collections.EMPTY_LIST),
+				Arguments.of(HttpStatus.BAD_REQUEST, MediaType.APPLICATION_JSON, "bigint", 10000001L, null, Collections.EMPTY_LIST)
 		);
 	}
 }

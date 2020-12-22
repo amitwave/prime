@@ -2,6 +2,7 @@ package com.natwest.prime.apache.service;
 
 import com.natwest.prime.apache.primenumberservice.PrimeNumberServiceApache;
 import com.natwest.prime.service.PrimeService;
+import com.natwest.prime.service.exception.NumberNotInRangeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,23 +23,19 @@ public class PrimeServiceApacheImpl implements PrimeService{
     public List<Long> getPrimes(Long number) {
         log.info("Primes for {}", number);
 
-        if(number > Integer.MAX_VALUE) {
-            throw new RuntimeException("Number too large.");
+        if(number <=1) {
+            throw new NumberNotInRangeException("Number should be at least 2");
         }
-        List<Long> primes = new ArrayList<>();
-        if(number <= 1) {
-            return primes;
+        if(number > 500000) {
+            throw new NumberNotInRangeException("Number should be less than or equal to 500000");
         }
 
-        List<Long> primeList = IntStream.rangeClosed(2, Math.toIntExact(number))
+        return IntStream.rangeClosed(2, Math.toIntExact(number))
                     .parallel()
                     .filter(primeNumberServiceApache::isPrime)
                     .asLongStream()
                     .boxed()
                     .collect(Collectors.toList());
-
-        primes.addAll(primeList);
-        return primes;
     }
 
     @Override

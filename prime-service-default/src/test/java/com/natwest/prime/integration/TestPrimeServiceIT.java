@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -40,8 +39,6 @@ public class TestPrimeServiceIT {
 
     private static Stream<Arguments> shouldReturnListOfPrimeNumbersWhenNumberIsLessThan7() {
         return Stream.of(
-                Arguments.of(0L, Collections.EMPTY_LIST),
-                Arguments.of(1L, Collections.EMPTY_LIST),
                 Arguments.of(6L, Arrays.asList(2L,3L,5L)),
                 Arguments.of(2L, Arrays.asList(2L)),
                 Arguments.of(3L, Arrays.asList(2L,3L)),

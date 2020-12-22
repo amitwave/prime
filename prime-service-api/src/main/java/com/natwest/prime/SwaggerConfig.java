@@ -10,10 +10,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import java.util.function.Predicate;
-
-import static springfox.documentation.builders.PathSelectors.regex;
-
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -34,7 +30,7 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("Prime Number Service API")
-                .description("Api returns list of all prime numbers starting from 2 for a given number with top limit of 1000000")
+                .description("Api returns list of all prime numbers")
                 .build();
     }
 

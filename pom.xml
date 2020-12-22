@@ -23,6 +23,7 @@
         <module>prime-service-integration</module>
         <module>prime-service-default</module>
         <module>prime-service-apache</module>
+        <module>prime-service-bigint</module>
 		<module>prime-service-api</module>
 	</modules>
 

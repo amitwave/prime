@@ -1,6 +1,5 @@
 package com.natwest.prime.apache.primenumberservice;
 
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;

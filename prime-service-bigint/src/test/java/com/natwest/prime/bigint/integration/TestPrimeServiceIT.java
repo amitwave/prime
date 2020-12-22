@@ -1,7 +1,8 @@
-package com.natwest.prime.apache.integration;
+package com.natwest.prime.bigint.integration;
 
 
 import com.natwest.prime.service.PrimeService;
+import com.natwest.prime.service.exception.NumberNotInRangeException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,10 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest
-@ComponentScan({"com.natwest.prime.apache"})
+@ComponentScan({"com.natwest.prime.bigint"})
 @EnableAutoConfiguration
 @SpringBootConfiguration
 public class TestPrimeServiceIT {
@@ -62,4 +64,8 @@ public class TestPrimeServiceIT {
                 ;
     }
 
+    @Test
+    public void shouldThrowExceptionWhenNumberIsSmallerThan2(){
+        assertThrows(NumberNotInRangeException.class, () -> primeService.getPrimes(1L));
+    }
 }

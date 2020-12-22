@@ -10,7 +10,7 @@
         </expiry>
         <listeners>
             <listener>
-                <class>com.natwest.prime.apache.cache.TaskCacheListener</class>
+                <class>com.natwest.prime.bigint.cache.TaskCacheListener</class>
                 <event-firing-mode>ASYNCHRONOUS</event-firing-mode>
                 <event-ordering-mode>ORDERED</event-ordering-mode>
                 <events-to-fire-on>CREATED</events-to-fire-on>
