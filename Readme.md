@@ -19,7 +19,7 @@
 http://localhost:8080/swagger-ui/index.html
 
 ### How to get primes:
-The url to his the rest endpoint is GET http://localhost:8080/primes/{limit} where limit is any integer between 2 and 1000000.
+The url to his the rest endpoint is GET http://localhost:8080/primes/{limit} where limit is any integer between 2 and 10000000 and using serviceType as header parameter.
 e.g. http://localhost:8080/primes/11 will return 
 {
     "initial": 11,
