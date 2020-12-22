@@ -59,4 +59,4 @@ In this project there are two services which provide the list of primes.
 If there is a need to provide another service then simply add another module inline with prime-service-default.
 
 ### Caching
-The services use ehcache to cache whether a number is prime.
+Two of the services use ehcache to cache whether a number is prime.
