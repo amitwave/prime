@@ -1,4 +1,4 @@
-### This is a multi module maven project to find list of primes with a top limit of 1000000.
+### This is a multi module maven project to find list of primes with a top limit of 10000000 using different services.
 
 ### Modules:
 1. prime-service-api - This module, prime-service-api exposed rest api. 
